@@ -60,8 +60,9 @@ for version in os.listdir(test_dir):
         passes += new_passes
         total += new_total
 
-print
-print # Summary
+        print
+
+print "# Summary"
 print
 print str(passes) + "/" + str(total)
 
