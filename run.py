@@ -1,4 +1,13 @@
 #!/usr/bin/python
+# Copyright 2014 The Rust Project Developers. See the COPYRIGHT
+# file at the top-level directory of this distribution and at
+# http://rust-lang.org/COPYRIGHT.
+#
+# Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
+# http://www.apache.org/licenses/LICENSE-2.0> or the MIT license
+# <LICENSE-MIT or http://opensource.org/licenses/MIT>, at your
+# option. This file may not be copied, modified, or distributed
+# except according to those terms.
 
 import os
 import sys
@@ -9,7 +18,7 @@ test_dir = 'test'
 
 # Sanity checks
 
-print "# Using rustc version:"
+print "# Testing rustc version"
 print
 
 retcode = subprocess.call([rustc, "--version"])
@@ -46,13 +55,13 @@ for version in os.listdir(test_dir):
     version_dir = test_dir + "/" + version
     if not os.path.isdir(version_dir): continue
 
-    print "# Running tests for " + version
+    print "# Version " + version
     print
 
     for group in os.listdir(version_dir):
         group_dir = version_dir + "/" + group
 
-        print "## Running " + version + "/" + group
+        print "## " + version + "/" + group
         print
 
         (new_passes, new_total) = run_test_group(group_dir)
