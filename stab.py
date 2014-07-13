@@ -6,6 +6,14 @@ from subprocess import call
 
 rustc = os.getenv('RUSTC', 'rustc')
 
+# Sanity checks
+
+retcode = call([rustc, "--version"])
+if retcode != 0:
+    print "rustc isn't working. Maybe set RUSTC env var."
+    sys.exit(1)
+
+
 # Some naive checks from just looking at the file,
 # including examining compiletest test directives
 def passes_smell_test(filename):
@@ -45,15 +53,6 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 filename = sys.argv[1]
-
-
-# Sanity checks
-
-retcode = call([rustc, "--version"])
-if retcode != 0:
-    print "rustc isn't working. Maybe set RUSTC env var."
-    sys.exit(1)
-
 
 if is_stable(filename):
     print "[stable] " + filename
