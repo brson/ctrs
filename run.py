@@ -12,9 +12,14 @@
 import os
 import sys
 import subprocess
+import shutil
 
+# The command to invoke the Rust compiler being tested
 rustc = os.getenv('RUSTC', 'rustc')
-test_dir = 'test'
+# The location of the tests, by default in ./test
+test_dir = os.getenv('CTRS_TEST_DIR', 'test')
+# The directory to use for temporary files, default ./tmp-ctrs
+tmp_dir = os.getenv('CTRS_TMP_DIR', 'tmp-ctrs')
 
 # Sanity checks
 
@@ -28,22 +33,51 @@ if retcode != 0:
 else:
     print
 
-def run_test_group(group_dir):
+# Remove old temporary files
+
+if os.path.isdir(tmp_dir):
+    shutil.rmtree(tmp_dir)
+retcode = subprocess.call(["mkdir", "-p", tmp_dir])
+if retcode != 0:
+    print "unable to create tmp dir `" + tmp_dir + "`"
+    sys.exit(1)
+
+def run_test(version, group, test_name):
+    work_dir = tmp_dir + "/" + version + "/" + group + "/" + test_name
+    retcode = subprocess.call(["mkdir", "-p", work_dir])
+    if retcode != 0:
+        print "failed to create tmp dir " + work_dir
+        sys.exit(1)
+
+    src_path = test_dir + "/" + version + "/" + group + "/" + test_name
+
+    exe_path = work_dir + "/" + "out.exe"
+
+    # First compile
+    retcode = subprocess.call([rustc, src_path, "-o", exe_path])
+    if retcode != 0:
+        print src_path + ": fail"
+        return False
+
+    # Now run
+    retcode = subprocess.call([exe_path])
+    if retcode != 0:
+        print src_path + ": fail"
+        return False
+
+    print src_path + ": pass"
+    return True
+
+
+def run_test_group(version, group):
+    group_dir = test_dir + "/" + version + "/" + group
     passes = 0
     total = 0
     for test_name in os.listdir(group_dir):
-        test_path = group_dir + "/" + test_name
-        # FIXME: Need to actually run tests
-        proc = subprocess.Popen([rustc, test_path, "--no-trans"], 0, None, None,
-                                subprocess.PIPE, subprocess.PIPE)
-        retcode = proc.wait()
-        if retcode == 0:
-            print test_path + ": pass"
+        test_passed = run_test(version, group, test_name)
+        if test_passed:
             passes += 1
-        else:
-            print test_path + ": fail"
         total += 1
-
     return (passes, total)
 
 passes = 0
@@ -64,7 +98,7 @@ for version in os.listdir(test_dir):
         print "## " + version + "/" + group
         print
 
-        (new_passes, new_total) = run_test_group(group_dir)
+        (new_passes, new_total) = run_test_group(version, group)
 
         passes += new_passes
         total += new_total
