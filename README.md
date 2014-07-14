@@ -1,20 +1,21 @@
 # Conformance Tests for Rust
 
-This is a very early stab at a test suite for validating that a
-compiler conforms to the Rust language. The basic strategy will be to
-establish a standard for identifying 'stable' Rust code, and
+This is a test suite for validating that a
+compiler implements the Rust programming language.
+The basic strategy will be to
+establish a criteria for identifying 'stable' Rust code, and
 collecting as much of it as possible here.
 
 Execute with `./run.py`. Set the `RUSTC` environment variable if you must.
 
 # Criteria for inclusion
 
-Criteria will expand over time. Currently:
+Criteria will expand over time.
+Currently:
 
 * Must pass 'rustc -F experimental -F deprecated'
-* No 'extern crate'
-* No opening feature gates
-* Single source file test cases
+* No 'extern crate' (i.e. only std)
+* No enabling feature gates
 
 Run `./stab.py` on a Rust file to see if it is a candidate.
 
