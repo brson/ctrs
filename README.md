@@ -37,13 +37,19 @@ Test groups are drawn from many sources.
   - run-pass - Tests from the reference test suite's 'run-pass' directory
   - pretty - Tests from the reference test suite's 'pretty' directory
 
-# Future coverage ideas
+# Future directions
 
-* Extract from all in-tree docs
-* rustbyexample.com
-* rustforrubyists.com
-* Other 'example' sources
-* Dependency-free libs e.g. math, quickcheck
+* Improve accuracy of staby.py
+* Improve upstream API stability
+* Add support for reference compile-fail tests
+* Support aux-build tests
+* Add support for Makefile tests
+* Sources
+  * Extract from all in-tree docs
+  * rustbyexample.com
+  * rustforrubyists.com
+  * Other 'example' sources
+  * Dependency-free libs e.g. math, quickcheck
 
 # Compiler interface requirements
 
