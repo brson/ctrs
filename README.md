@@ -19,12 +19,6 @@ Currently:
 
 Run `./stab.py` on a Rust file to see if it is a candidate.
 
-# Licensing
-
-Any OSI-approved license accepted.
-Rust license prefered.
-Non-free licenses also welcome, but in another repo.
-
 # Organization
 
 All tests are under the `test` directory.
@@ -37,6 +31,19 @@ Test groups are drawn from many sources.
 - 0.11.0
   - run-pass - Tests from the reference test suite's 'run-pass' directory
   - pretty - Tests from the reference test suite's 'pretty' directory
+
+# Compiler interface requirements
+
+Running the test suite requires a Rust compiler that generally behaves
+like the reference compiler.
+Currently the test suite expects the compiler to support the `-o` flag.
+In the future it will expect more flags to work.
+
+# Licensing
+
+Any OSI-approved license accepted.
+Rust license prefered.
+Non-free licenses also welcome, but in another repo.
 
 # Future directions
 
@@ -52,9 +59,3 @@ Test groups are drawn from many sources.
   * Other 'example' sources
   * Dependency-free libs e.g. math, quickcheck
 
-# Compiler interface requirements
-
-Running the test suite requires a Rust compiler that generally behaves
-like the reference compiler.
-Currently the test suite expects the compiler to support the `-o` flag.
-In the future it will expect more flags to work.
