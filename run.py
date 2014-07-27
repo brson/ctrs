@@ -141,9 +141,10 @@ for version in os.listdir(test_dir):
         passes += new_passes
         total += new_total
 
+print
 print "# Summary"
 print
-print str(passes) + "/" + str(total)
+print str(passes) + "/" + str(total - passes) + "/" + str(total)
 
 if total == passes:
     sys.exit(0)

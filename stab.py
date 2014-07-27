@@ -75,6 +75,8 @@ def passes_smell_test(filename):
             if "aux-build" in line: return False
             # No compile-flags
             if "compile-flags" in line: return False
+            # No exec-env
+            if "exec-env" in line: return False
             # Native crate in reference suite that we don't have
             if "rust_test_helpers" in line: return False
 
