@@ -21,6 +21,12 @@ test_dir = os.getenv('CTRS_TEST_DIR', 'test')
 # The directory to use for temporary files, default ./tmp-ctrs
 tmp_dir = os.getenv('CTRS_TMP_DIR', 'tmp-ctrs')
 
+verbose = False
+
+for arg in sys.argv:
+    if arg == "--verbose":
+        verbose = True
+
 # Sanity checks
 
 print "# Testing rustc version"
@@ -54,13 +60,35 @@ def run_test(version, group, test_name):
     exe_path = work_dir + "/" + "out.exe"
 
     # First compile
-    retcode = subprocess.call([rustc, src_path, "-o", exe_path])
+    if verbose: print "building " + src_path
+    p = subprocess.Popen([rustc, src_path, "-o", exe_path],
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    output, errors = p.communicate()
+    retcode = p.wait()
+
+    if verbose:
+        print "=== stdout ===\n"
+        print output
+        print "=== stderr ===\n"
+        print errors
+
     if retcode != 0:
         print src_path + ": fail"
         return False
 
     # Now run
-    retcode = subprocess.call([exe_path])
+    if verbose: print "running " + src_path
+    p = subprocess.Popen([exe_path],
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    output, errors = p.communicate()
+    retcode = p.wait()
+
+    if verbose:
+        print "=== stdout ===\n"
+        print output
+        print "=== stderr ===\n"
+        print errors
+
     if retcode != 0:
         print src_path + ": fail"
         return False
