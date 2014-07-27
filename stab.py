@@ -17,7 +17,7 @@ rustc = os.getenv('RUSTC', 'rustc')
 
 # Sanity checks
 
-retcode = call([rustc, "--version"])
+retcode = call([rustc, "--version"], )
 if retcode != 0:
     print "rustc isn't working. Maybe set RUSTC env var."
     sys.exit(1)
@@ -89,18 +89,18 @@ def is_stable(filename):
     return True
 
 
-# Parse arguments
+if __name__ == '__main__':
 
-if len(sys.argv) < 2:
-    print "usage: stab.py [filename]"
-    sys.exit(1)
+    if len(sys.argv) < 2:
+        print "usage: stab.py [filename]"
+        sys.exit(1)
 
-filename = sys.argv[1]
+    filename = sys.argv[1]
 
-if is_stable(filename):
-    print "[stable] " + filename
-    sys.exit(0)
-else:
-    print "[unstable] " + filename
-    sys.exit(1)
+    if is_stable(filename):
+        print "[stable] " + filename
+        sys.exit(0)
+    else:
+        print "[unstable] " + filename
+        sys.exit(1)
 
