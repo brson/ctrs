@@ -23,9 +23,43 @@ if retcode != 0:
     sys.exit(1)
 
 
+# Get a list of all the source files in a crate, given the crate root
+def get_deps(filename):
+    try:
+        os.remove("stab-depinfo.d")
+    except:
+        pass
+
+    # Specify a crate type so the output will have a single target (not two for rlib/dylib)
+    retcode = call([rustc, filename, "--crate-type=rlib", "--no-trans", "--dep-info", "stab-depinfo.d"])
+    if retcode != 0:
+        return None
+
+    depstr = ""
+    with open("stab-depinfo.d", 'r') as depinfo:
+        depstr = depinfo.read()
+
+    os.remove("stab-depinfo.d")
+
+    if depstr.find(":") == -1:
+        raise "depinfo looks wrong"
+
+    depstr = depstr.split(":")[1].strip()
+
+    deps = depstr.split(" ")
+
+    return deps
+
+
 # Some naive checks from just looking at the file,
 # including examining compiletest test directives
 def passes_smell_test(filename):
+
+    # Note: not using depinfo because none of the checks below need it
+    #deps = get_deps(filename)
+
+    #if deps == None:
+    #    return False
 
     with open(filename) as f:
         for line in f:
