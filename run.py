@@ -29,12 +29,12 @@ for arg in sys.argv:
 
 # Sanity checks
 
-print "# Testing rustc version"
+print "Testing Rust compiler version:"
 print
 
 retcode = subprocess.call([rustc, "--version"])
 if retcode != 0:
-    print "rustc isn't working. Maybe set RUSTC env var."
+    print "Rust compiler isn't working. Maybe set RUSTC env var."
     sys.exit(1)
 else:
     print
@@ -66,7 +66,8 @@ def run_test(version, group, test_name):
     output, errors = p.communicate()
     retcode = p.wait()
 
-    if verbose:
+    if verbose or retcode != 0:
+        print
         print "=== stdout ===\n"
         print output
         print "=== stderr ===\n"
@@ -83,7 +84,8 @@ def run_test(version, group, test_name):
     output, errors = p.communicate()
     retcode = p.wait()
 
-    if verbose:
+    if verbose or retcode != 0:
+        print
         print "=== stdout ===\n"
         print output
         print "=== stderr ===\n"
@@ -93,12 +95,16 @@ def run_test(version, group, test_name):
         print src_path + ": fail"
         return False
 
-    print src_path + ": pass"
     return True
 
 
 def run_test_group(version, group):
     group_dir = test_dir + "/" + version + "/" + group
+
+    test_names = []
+    for test_name in os.listdir(group_dir):
+        test_names += [test_name]
+
     passes = 0
     total = 0
     for test_name in os.listdir(group_dir):
@@ -106,6 +112,16 @@ def run_test_group(version, group):
         if test_passed:
             passes += 1
         total += 1
+        if total != 1:
+            # Overwriting progress in place
+            sys.stdout.write("\r")
+        sys.stdout.write(version + "/" + group + ": " + str(passes) + "/" + str(total - passes) + "/" + str(len(test_names)))
+        sys.stdout.flush()
+
+    passfail = " [pass]"
+    if passes != total:
+        passfail = " [fail]"
+    print "\r" + version + "/" + group + ": " + str(passes) + "/" + str(total - passes) + "/" + str(len(test_names)) + passfail
     return (passes, total)
 
 passes = 0
@@ -117,21 +133,13 @@ for version in os.listdir(test_dir):
     version_dir = test_dir + "/" + version
     if not os.path.isdir(version_dir): continue
 
-    print "# Version " + version
-    print
-
     for group in os.listdir(version_dir):
         group_dir = version_dir + "/" + group
-
-        print "## " + version + "/" + group
-        print
 
         (new_passes, new_total) = run_test_group(version, group)
 
         passes += new_passes
         total += new_total
-
-        print
 
 print "# Summary"
 print
