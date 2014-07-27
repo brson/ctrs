@@ -18,6 +18,8 @@ import shutil
 def slurp(srcdir, destdir):
 
     for src_file in os.listdir(srcdir):
+        if not src_file.endswith("rs"):
+            continue
         src_path = srcdir + "/" + src_file
         if is_stable(src_path):
             print "[stable] " + src_path
