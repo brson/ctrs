@@ -28,7 +28,7 @@ Test groups are drawn from many sources.
 
 ## Current coverage
 
-- 0.11.0
+- 1.0.0-rc
   - run-pass - Tests from the reference test suite's 'run-pass' directory
   - pretty - Tests from the reference test suite's 'pretty' directory
   - doc - Extracts from the reference implementation 'doc' directory
