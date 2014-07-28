@@ -67,10 +67,10 @@ def translate_test_case(out_file_name, markdown_tags, lines):
             if not has_main:
                 # Indent to make pretty
                 f.write("    ")
-            f.write(line)
+            f.write(line + "\n")
 
         if not has_main:
-            f.write("}")
+            f.write("}\n")
         
 
 def undoc(filename, outdir, test_name):
@@ -90,6 +90,14 @@ def undoc(filename, outdir, test_name):
         markdown_tags = []
         lines = []
         for line in f:
+
+            if line.find("```") >=0 or line.find("~~~") >= 0:
+                line = line.strip()
+            if line.strip().startswith("/// ") or line.strip().startswith("//! "):
+                line = line.strip()[4 : len(line)]
+            if line.strip().startswith("///") or line.strip().startswith("//!"):
+                line = line.strip()[3 : len(line)]
+
             if line.startswith("```") or line.startswith("~~~"):
                 in_code_block = not in_code_block
 

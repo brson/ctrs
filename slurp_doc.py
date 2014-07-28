@@ -27,12 +27,14 @@ def slurp_doc(srcdir, destdir):
             if not f.endswith(".md") and not f.endswith(".rs"):
                 continue
             test_name = dir_name.replace(junkdirs, "")
+            if not test_name.endswith("/"):
+                test_name = test_name + "/"
             test_name = test_name + f
             test_name = test_name.replace("/", "_")
             test_name = test_name.replace(".", "_")
             test_name = test_name.translate(None, "\:")
             test_name = test_name.strip("_")
-            undoc(dir_name + f, destdir, test_name)
+            undoc(dir_name + "/" + f, destdir, test_name)
 
 if __name__ == '__main__':
 

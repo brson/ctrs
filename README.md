@@ -31,9 +31,12 @@ Current focus is pulling tests out of the reference implementation that
 meet the criteria.
 
 - 1.0.0-rc
-  - doc - Extracts from the reference implementation 'doc' directory
-  - pretty - Tests from the reference test suite's 'pretty' directory
-  - run-pass - Tests from the reference test suite's 'run-pass' directory
+  - doc - Extracts from the RI 'doc' directory
+  - doc-collections - Extracts from the RI collections API docs
+  - doc-core - Extracts from the RI core library API docs
+  - doc-std - Extracts from the RI std library API docs
+  - pretty - Tests from the RI test suite's 'pretty' directory
+  - run-pass - Tests from the RI test suite's 'run-pass' directory
 
 ## Compiler interface requirements
 
@@ -64,6 +67,7 @@ This test suite is a bunch of python scripts for wrangling Rust code from variou
 * Improve upstream API stability
 * Add support for reference compile-fail tests
 * Support aux-build tests
+* Support should_fail doc tests
 * Add support for Makefile tests
 * Sources
   * compile-fail, run-fail, run-make tests
