@@ -109,7 +109,7 @@ def undoc(filename, outdir, test_name):
                         tags = []
                     markdown_tags = tags
                 else:
-                    out_file_name = outdir + "/" + test_name + "_" + str(test_num).zfill(4)
+                    out_file_name = outdir + "/" + test_name + "_" + str(test_num).zfill(4) + ".rs"
                     translate_test_case(out_file_name, markdown_tags, lines)
                     markdown_tags = []
                     lines = []
