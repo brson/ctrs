@@ -1,0 +1,20 @@
+fn main() {
+    struct Point {x: f64, y: f64};
+    type Surface = int;
+    struct BoundingBox {x: f64, y: f64, width: f64, height: f64};
+    trait Shape { fn draw(&self, Surface); fn bounding_box(&self) -> BoundingBox; }
+    fn do_draw_circle(s: Surface, c: Circle) { }
+    struct Circle {
+        radius: f64,
+        center: Point,
+    }
+    
+    impl Shape for Circle {
+        fn draw(&self, s: Surface) { do_draw_circle(s, *self); }
+        fn bounding_box(&self) -> BoundingBox {
+            let r = self.radius;
+            BoundingBox{x: self.center.x - r, y: self.center.y - r,
+             width: 2.0 * r, height: 2.0 * r}
+        }
+    }
+}

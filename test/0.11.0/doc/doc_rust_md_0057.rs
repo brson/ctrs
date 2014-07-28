@@ -1,0 +1,9 @@
+fn main() {
+    trait Seq<T> { }
+    impl<T> Seq<T> for Vec<T> {
+       /* ... */
+    }
+    impl Seq<bool> for u32 {
+       /* Treat the integer as a sequence of bits */
+    }
+}

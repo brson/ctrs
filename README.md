@@ -31,6 +31,7 @@ Test groups are drawn from many sources.
 - 0.11.0
   - run-pass - Tests from the reference test suite's 'run-pass' directory
   - pretty - Tests from the reference test suite's 'pretty' directory
+  - doc - Extracts from the reference implementation 'doc' directory
 
 ## Compiler interface requirements
 
