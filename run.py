@@ -61,7 +61,7 @@ def run_test(version, group, test_name):
 
     # First compile
     if verbose: print "building " + src_path
-    p = subprocess.Popen([rustc, src_path, "-o", exe_path],
+    p = subprocess.Popen([rustc, src_path, "--crate-type=bin", "-o", exe_path],
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output, errors = p.communicate()
     retcode = p.wait()

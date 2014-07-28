@@ -96,7 +96,7 @@ def is_stable(filename):
 if __name__ == '__main__':
 
     if len(sys.argv) < 2:
-        print "usage: stab.py [filename]"
+        print "usage: stab.py filename"
         sys.exit(1)
 
     filename = sys.argv[1]

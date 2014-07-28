@@ -39,7 +39,7 @@ def slurp_doc(srcdir, destdir):
 if __name__ == '__main__':
 
     if len(sys.argv) < 3:
-        print "usage: slurp_doc.py [srcdir] [destdir]"
+        print "usage: slurp_doc.py srcdir destdir"
         sys.exit(1)
 
     srcdir = sys.argv[1]

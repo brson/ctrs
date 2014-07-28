@@ -135,7 +135,7 @@ def undoc(filename, outdir, test_name):
 if __name__ == '__main__':
 
     if len(sys.argv) < 3:
-        print "usage: undoc.py [filename] [outdir]"
+        print "usage: undoc.py filename outdir"
         sys.exit(1)
 
     filename = sys.argv[1]

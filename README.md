@@ -37,6 +37,7 @@ meet the criteria.
   - doc-std - Extracts from the RI std library API docs
   - pretty - Tests from the RI test suite's 'pretty' directory
   - run-pass - Tests from the RI test suite's 'run-pass' directory
+  - rust-by-example - Extracts from www.rustbyexample.com
 
 ## Compiler interface requirements
 
@@ -74,7 +75,6 @@ This test suite is a bunch of python scripts for wrangling Rust code from variou
   * compile-fail, run-fail, run-make tests
   * In-tree std crate docs
   * Popular blog posts
-  * rustbyexample.com
   * rustforrubyists.com
   * Other 'example' sources
   * Dependency-free libs e.g. math, quickcheck

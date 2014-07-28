@@ -17,20 +17,21 @@ import shutil
 
 def slurp(srcdir, destdir):
 
-    for src_file in os.listdir(srcdir):
-        if not src_file.endswith("rs"):
-            continue
-        src_path = srcdir + "/" + src_file
-        if is_stable(src_path):
-            print "[stable] " + src_path
-            shutil.copy(src_path, destdir)
-        else:
-            print "[unstable] " + src_path
+    for dir_name, subdir_list, file_list in os.walk(srcdir):
+        for src_file in file_list:
+            if not src_file.endswith("rs"):
+                continue
+            src_path = dir_name + "/" + src_file
+            if is_stable(src_path):
+                print "[stable] " + src_path
+                shutil.copy(src_path, destdir)
+            else:
+                print "[unstable] " + src_path
 
 if __name__ == '__main__':
 
     if len(sys.argv) < 3:
-        print "usage: slurp.py [srcdir] [destdir]"
+        print "usage: slurp.py srcdir destdir"
         sys.exit(1)
 
     srcdir = sys.argv[1]
