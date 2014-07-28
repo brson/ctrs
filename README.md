@@ -48,6 +48,16 @@ Any OSI-approved license accepted.
 Rust license prefered.
 Non-free licenses also welcome, but in another repo.
 
+## Scripts
+
+This test suite is a bunch of python scripts for wrangling Rust code from various places and into a form that is runnable.
+
+* `run.py` - The test suite runner. Just needs a `rustc` command available or the `RUSTC` environment variable to be set.
+* `slurp.py` - Copies all Rust files that pass `stab.py` from one dir to another.
+* `slurp_doc.py` - Recursively extracts doc tests from all .rs/.md files to a dir.
+* `stab.py` - Checks whether a crate meets the criteria for inclusion.
+* `undoc.py` - Extracts doc tests from a single file.
+
 ## Future directions
 
 * Improve accuracy of staby.py
