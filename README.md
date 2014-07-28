@@ -1,12 +1,11 @@
 # Conformance Tests for Rust
 
-This is a test suite for validating that a
-compiler implements the Rust programming language.
-The basic strategy will be to
-establish a criteria for identifying 'stable' Rust code, and
-collecting as much of it as possible here.
+This is a test suite for validating that a compiler implements the Rust programming language.
+The basic strategy will be to establish a criteria for identifying 'stable' Rust code,
+and collecting as much of it as possible here.
 
-Execute with `./run.py`. Set the `RUSTC` environment variable if you must.
+Execute with `./run.py` to test your Rust compiler.
+Set the `RUSTC` environment variable if you must.
 
 ## Criteria for inclusion
 
@@ -28,10 +27,13 @@ Test groups are drawn from many sources.
 
 ## Current coverage
 
+Current focus is pulling tests out of the reference implementation that
+meet the criteria.
+
 - 1.0.0-rc
-  - run-pass - Tests from the reference test suite's 'run-pass' directory
-  - pretty - Tests from the reference test suite's 'pretty' directory
   - doc - Extracts from the reference implementation 'doc' directory
+  - pretty - Tests from the reference test suite's 'pretty' directory
+  - run-pass - Tests from the reference test suite's 'run-pass' directory
 
 ## Compiler interface requirements
 
@@ -54,7 +56,9 @@ Non-free licenses also welcome, but in another repo.
 * Support aux-build tests
 * Add support for Makefile tests
 * Sources
-  * Extract from all in-tree docs
+  * compile-fail, run-fail, run-make tests
+  * In-tree std crate docs
+  * Popular blog posts
   * rustbyexample.com
   * rustforrubyists.com
   * Other 'example' sources
