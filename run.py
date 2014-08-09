@@ -20,6 +20,8 @@ rustc = os.getenv('RUSTC', 'rustc')
 test_dir = os.getenv('CTRS_TEST_DIR', 'test')
 # The directory to use for temporary files, default ./tmp-ctrs
 tmp_dir = os.getenv('CTRS_TMP_DIR', 'tmp-ctrs')
+# Space-separated list of test groups to run
+test_groups = os.getenv('CTRS_GROUPS', None)
 
 verbose = False
 
@@ -133,8 +135,13 @@ for version in os.listdir(test_dir):
     version_dir = test_dir + "/" + version
     if not os.path.isdir(version_dir): continue
 
+    groups = None
+    if test_groups: groups = test_groups.split(" ")
+
     for group in os.listdir(version_dir):
         group_dir = version_dir + "/" + group
+
+        if groups and not group in groups: continue
 
         (new_passes, new_total) = run_test_group(version, group)
 
