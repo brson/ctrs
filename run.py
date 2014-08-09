@@ -110,6 +110,8 @@ def run_test_group(version, group):
     passes = 0
     total = 0
     for test_name in os.listdir(group_dir):
+        if not test_name.endswith(".rs"): continue
+
         test_passed = run_test(version, group, test_name)
         if test_passed:
             passes += 1
