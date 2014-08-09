@@ -56,29 +56,30 @@ def get_deps(filename):
 def passes_smell_test(filename):
 
     # Note: not using depinfo because none of the checks below need it
-    #deps = get_deps(filename)
+    deps = get_deps(filename)
 
-    #if deps == None:
-    #    return False
+    if deps == None:
+        return False
 
-    with open(filename) as f:
-        for line in f:
-            # Look for things that might be risky
+    for dep in deps:
+        with open(dep) as f:
+            for line in f:
+                # Look for things that might be risky
 
-            # 'extern crate' might bring in experimental API's
-            if "extern crate" in line: return False
-            # No turning on feature gates
-            if "feature" in line: return False
-            # No ignored test cases
-            if "// ignore" in line: return False
-            # No test cases requiring aux
-            if "aux-build" in line: return False
-            # No compile-flags
-            if "compile-flags" in line: return False
-            # No exec-env
-            if "exec-env" in line: return False
-            # Native crate in reference suite that we don't have
-            if "rust_test_helpers" in line: return False
+                # 'extern crate' might bring in experimental API's
+                if "extern crate" in line: return False
+                # No turning on feature gates
+                if "feature" in line: return False
+                # No ignored test cases
+                if "// ignore" in line: return False
+                # No test cases requiring aux
+                if "aux-build" in line: return False
+                # No compile-flags
+                if "compile-flags" in line: return False
+                # No exec-env
+                if "exec-env" in line: return False
+                # Native crate in reference suite that we don't have
+                if "rust_test_helpers" in line: return False
 
     return True
 
