@@ -84,8 +84,9 @@ def passes_smell_test(filename):
     return True
 
 def uses_stable_apis(filename):
-    retcode = call([rustc, filename, "--no-trans", "-F", "experimental", "-F", "deprecated"]);
-    if retcode == 0: return True
+    retcode1 = call([rustc, filename, "--no-trans", "-F", "experimental", "-F", "deprecated"]);
+    retcode2 = call([rustc, filename, "--no-trans", "-F", "experimental", "-F", "deprecated", "--test"]);
+    if retcode1 == 0 and retcode2: return True
     else: return False
 
 def is_stable(filename):

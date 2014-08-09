@@ -50,6 +50,18 @@ if retcode != 0:
     print "unable to create tmp dir `" + tmp_dir + "`"
     sys.exit(1)
 
+def get_config(filename):
+    test_only = False
+
+    with open(filename) as f:
+        for line in f:
+            if "// ctrs-test-only" in line:
+                test_only = True
+
+    return {
+        'test_only': test_only
+    }
+
 def run_test(version, group, test_name):
     work_dir = tmp_dir + "/" + version + "/" + group + "/" + test_name
     retcode = subprocess.call(["mkdir", "-p", work_dir])
@@ -59,11 +71,16 @@ def run_test(version, group, test_name):
 
     src_path = test_dir + "/" + version + "/" + group + "/" + test_name
 
+    config = get_config(src_path)
+
     exe_path = work_dir + "/" + "out.exe"
 
     # First compile
     if verbose: print "building " + src_path
-    p = subprocess.Popen([rustc, src_path, "--crate-type=bin", "-o", exe_path],
+    rustc_args = [rustc, src_path, "--crate-type=bin", "-o", exe_path]
+    if config['test_only']:
+        rustc_args += ["--test"]
+    p = subprocess.Popen(rustc_args,
                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output, errors = p.communicate()
     retcode = p.wait()
@@ -101,6 +118,15 @@ def run_test(version, group, test_name):
 
 
 def run_test_group(version, group):
+    for filename in os.listdir(group_dir):
+        if filename == "lib.rs" or filename == "bin.rs":
+            passed = run_test(version, group, filename)
+            return (passed, 1)
+
+    return run_basic_test_group(version, group)
+
+
+def run_basic_test_group(version, group):
     group_dir = test_dir + "/" + version + "/" + group
 
     test_names = []
@@ -109,7 +135,7 @@ def run_test_group(version, group):
 
     passes = 0
     total = 0
-    for test_name in os.listdir(group_dir):
+    for test_name in test_names:
         if not test_name.endswith(".rs"): continue
 
         test_passed = run_test(version, group, test_name)
