@@ -80,4 +80,5 @@ This test suite is a bunch of python scripts for wrangling Rust code from variou
   * Dependency-free libs e.g. math, quickcheck
   * https://github.com/bjz/noise-rs
   * coretest
+  * automatic extraction of #[test] cases
 
