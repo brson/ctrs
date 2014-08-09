@@ -1,4 +1,4 @@
-// Copyright 2014 The Rust Project Developers. See the COPYRIGHT
+// Copyright 2012 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
 //
@@ -8,7 +8,15 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-#[deriving(Share,Send,Copy)]
-struct Test;
 
-pub fn main() {}
+use std::gc::Gc;
+
+enum colour { red, green, blue, }
+
+enum tree { children(Gc<list>), leaf(colour), }
+
+enum list { cons(Gc<tree>, Gc<list>), nil, }
+
+enum small_list { kons(int, Gc<small_list>), neel, }
+
+pub fn main() { }

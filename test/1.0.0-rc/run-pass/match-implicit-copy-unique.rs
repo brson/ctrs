@@ -1,4 +1,4 @@
-// Copyright 2013 The Rust Project Developers. See the COPYRIGHT
+// Copyright 2012 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
 //
@@ -8,18 +8,15 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-type FontTableTag = u32;
 
-trait FontTableTagConversions {
-  fn tag_to_string(self);
-}
-
-impl FontTableTagConversions for FontTableTag {
-  fn tag_to_string(self) {
-    &self;
-  }
-}
+struct Pair { a: Box<int>, b: Box<int> }
 
 pub fn main() {
-    5.tag_to_string();
+    let mut x = box Pair {a: box 10, b: box 20};
+    let x_internal = &mut *x;
+    match *x_internal {
+      Pair {a: ref mut a, b: ref mut _b} => {
+        assert!(**a == 10); *a = box 30; assert!(**a == 30);
+      }
+    }
 }

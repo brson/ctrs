@@ -8,20 +8,30 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-// Tests that impls are allowed to have looser, more permissive bounds
-// than the traits require.
+// Regression test that rustc doesn't recurse infinitely substituting
+// the boxed type parameter
 
-trait A {
-  fn b<C:Share,D>(x: C) -> C;
+
+use std::gc::Gc;
+
+struct Tree<T> {
+    parent: Option<T>
 }
 
-struct E {
- f: int
+fn empty<T>() -> Tree<T> { fail!() }
+
+struct Box {
+    tree: Tree<Gc<Box>>
 }
 
-impl A for E {
-  fn b<F,G>(_x: F) -> F { fail!() }
-  //~^ ERROR in method `b`, type parameter 0 has 1 bound, but
+fn Box() -> Box {
+    Box {
+        tree: empty()
+    }
 }
 
-pub fn main() {}
+struct LayoutData {
+    a_box: Option<Gc<Box>>
+}
+
+pub fn main() { }

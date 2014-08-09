@@ -8,20 +8,14 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-// Make sure const bounds work on things, and test that a few types
-// are const.
 
+use std::gc::Gc;
 
-fn foo<T: Share>(x: T) -> T { x }
-
-struct F { field: int }
-
-pub fn main() {
-    /*foo(1);
-    foo("hi".to_string());
-    foo(~[1, 2, 3]);
-    foo(F{field: 42});
-    foo((1, 2u));
-    foo(@1);*/
-    foo(box 1i);
+struct Quux {
+    bar: int
 }
+
+fn g(_i: int) { }
+fn f(foo: Gc<Gc<Quux>>) { g(foo.bar); }
+
+pub fn main() { }

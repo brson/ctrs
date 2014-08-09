@@ -1,4 +1,4 @@
-// Copyright 2012-2014 The Rust Project Developers. See the COPYRIGHT
+// Copyright 2013 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
 //
@@ -8,11 +8,16 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-pub fn main() {
-    assert_eq!(0xffffffffu32, (-1 as u32));
-    assert_eq!(4294967295u32, (-1 as u32));
-    assert_eq!(0xffffffffffffffffu64, (-1 as u64));
-    assert_eq!(18446744073709551615u64, (-1 as u64));
 
-    assert_eq!(-2147483648i32 - 1i32, 2147483647i32);
+use std::gc::GC;
+
+#[deriving(PartialEq, Show)]
+struct Point { x : int }
+
+pub fn main() {
+    assert_eq!(14i,14i);
+    assert_eq!("abc".to_string(),"abc".to_string());
+    assert_eq!(box Point{x:34},box Point{x:34});
+    assert_eq!(&Point{x:34},&Point{x:34});
+    assert_eq!(box(GC) Point{x:34},box(GC) Point{x:34});
 }

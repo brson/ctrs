@@ -1,4 +1,4 @@
-// Copyright 2013 The Rust Project Developers. See the COPYRIGHT
+// Copyright 2012 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
 //
@@ -8,6 +8,14 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-trait U { fn f(self); }
-impl U for int { fn f(self) {} }
-pub fn main() { 4.f(); }
+
+use std::task;
+use std::gc::{GC, Gc};
+
+fn adder(x: Gc<int>, y: Gc<int>) -> int { return *x + *y; }
+fn failer() -> Gc<int> { fail!(); }
+pub fn main() {
+    assert!(task::try(proc() {
+        adder(box(GC) 2, failer()); ()
+    }).is_err());
+}

@@ -1,4 +1,4 @@
-// Copyright 2012-2014 The Rust Project Developers. See the COPYRIGHT
+// Copyright 2012 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
 //
@@ -8,11 +8,9 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-pub fn main() {
-    assert_eq!(0xffffffffu32, (-1 as u32));
-    assert_eq!(4294967295u32, (-1 as u32));
-    assert_eq!(0xffffffffffffffffu64, (-1 as u64));
-    assert_eq!(18446744073709551615u64, (-1 as u64));
 
-    assert_eq!(-2147483648i32 - 1i32, 2147483647i32);
+pub fn main() {
+    let (&x, &y) = (&3i, &'a');
+    assert_eq!(x, 3);
+    assert_eq!(y, 'a');
 }

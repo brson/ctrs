@@ -8,21 +8,9 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-#![allow(dead_code)]
+extern "C" fn foo<T: Int>(a: T, b: T) -> T { a + b }
 
-
-trait A<T> {}
-trait B<T, U> {}
-trait C<'a, U> {}
-
-mod foo {
-    pub trait D<'a, T> {}
+fn main() {
+    assert_eq!(99u8, foo(255u8, 100u8));
+    assert_eq!(99u16, foo(65535u16, 100u16));
 }
-
-fn foo1<T>(_: &A<T> + Send) {}
-fn foo2<T>(_: Box<A<T> + Send + Share>) {}
-fn foo3<T>(_: Box<B<int, uint> + 'static>) {}
-fn foo4<'a, T>(_: Box<C<'a, T> + 'static + Send>) {}
-fn foo5<'a, T>(_: Box<foo::D<'a, T> + 'static + Send>) {}
-
-pub fn main() {}

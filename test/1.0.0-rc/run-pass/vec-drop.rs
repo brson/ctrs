@@ -1,4 +1,4 @@
-// Copyright 2012-2014 The Rust Project Developers. See the COPYRIGHT
+// Copyright 2012 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
 //
@@ -8,11 +8,16 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-pub fn main() {
-    assert_eq!(0xffffffffu32, (-1 as u32));
-    assert_eq!(4294967295u32, (-1 as u32));
-    assert_eq!(0xffffffffffffffffu64, (-1 as u64));
-    assert_eq!(18446744073709551615u64, (-1 as u64));
 
-    assert_eq!(-2147483648i32 - 1i32, 2147483647i32);
+use std::gc::{GC, Gc};
+
+struct Pair { x: int, y: int }
+
+pub fn main() {
+    // This just tests whether the vec leaks its members.
+
+    let _pvec: Vec<Gc<Pair>> =
+        vec!(box(GC) Pair{x: 1, y: 2},
+             box(GC) Pair{x: 3, y: 4},
+             box(GC) Pair{x: 5, y: 6});
 }

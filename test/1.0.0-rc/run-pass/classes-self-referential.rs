@@ -1,4 +1,4 @@
-// Copyright 2013 The Rust Project Developers. See the COPYRIGHT
+// Copyright 2012 The Rust Project Developers. See the COPYRIGHT
 // file at the top-level directory of this distribution and at
 // http://rust-lang.org/COPYRIGHT.
 //
@@ -9,22 +9,18 @@
 // except according to those terms.
 
 
-trait Foo {
+use std::gc::Gc;
+
+struct kitten {
+    cat: Option<cat>,
 }
 
-fn b(_x: Box<Foo+Send>) {
+fn kitten(cat: Option<cat>) -> kitten {
+    kitten {
+        cat: cat
+    }
 }
 
-fn c(x: Box<Foo+Share+Send>) {
-    e(x);
-}
+type cat = Gc<kitten>;
 
-fn d(x: Box<Foo+Send>) {
-    e(x);
-}
-
-fn e(x: Box<Foo>) {
-    e(x);
-}
-
-pub fn main() { }
+pub fn main() {}
