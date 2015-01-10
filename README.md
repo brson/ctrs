@@ -12,18 +12,16 @@ Set the `RUSTC` environment variable if you must.
 Criteria will expand over time.
 Currently:
 
-* Must pass 'rustc -F experimental -F deprecated'
+* Must pass 'rustc -F unstable -F deprecated -F unstable_features'
 * No 'extern crate' (i.e. only std)
-* No enabling feature gates
 
 Run `./stab.py` on a Rust file to see if it is a candidate.
 
 ## Organization
 
-All tests are under the `test` directory.
-Immediately under `test` are directories for Rust versions.
-Under each version are directories for test 'groups'.
-Test groups are drawn from many sources.
+All tests are under the `test` directory. Immediately under `test`
+are directories for Rust versions. Under each version are directories
+for test 'groups'. Test groups are drawn from many sources.
 
 ## Current coverage
 
@@ -42,15 +40,14 @@ meet the criteria.
 ## Compiler interface requirements
 
 Running the test suite requires a Rust compiler that generally behaves
-like the reference compiler.
-Currently the test suite expects the compiler to support the `-o` flag.
-In the future it will expect more flags to work.
+like the reference compiler. Currently the test suite expects the
+compiler to support the `-o` flag. In the future it will expect more
+flags to work.
 
 ## Licensing
 
-Any OSI-approved license accepted.
-Rust license prefered.
-Non-free licenses also welcome, but in another repo.
+Any OSI-approved license accepted. Rust license prefered. Non-free
+licenses also welcome, but in another repo.
 
 ## Scripts
 
@@ -78,7 +75,7 @@ This test suite is a bunch of python scripts for wrangling Rust code from variou
   * rustforrubyists.com
   * Other 'example' sources
   * Dependency-free libs e.g. math, quickcheck
-  * https://github.com/bjz/noise-rs
   * coretest
   * automatic extraction of #[test] cases
+  * tool to extract build plans from cargo graphs
 
