@@ -31,7 +31,7 @@ def get_deps(filename):
         pass
 
     # Specify a crate type so the output will have a single target (not two for rlib/dylib)
-    retcode = call([rustc, filename, "--crate-type=rlib", "--no-trans", "--dep-info", "stab-depinfo.d"])
+    retcode = call([rustc, filename, "--crate-type=rlib", "--emit", "dep-info", "-o", "stab-depinfo"])
     if retcode != 0:
         return None
 
@@ -84,8 +84,8 @@ def passes_smell_test(filename):
     return True
 
 def uses_stable_apis(filename):
-    retcode1 = call([rustc, filename, "--no-trans", "-F", "experimental", "-F", "deprecated"]);
-    retcode2 = call([rustc, filename, "--no-trans", "-F", "experimental", "-F", "deprecated", "--test"]);
+    retcode1 = call([rustc, filename, "-Z", "no-trans", "-F", "experimental", "-F", "unstable", "-F", "deprecated"]);
+    retcode2 = call([rustc, filename, "-Z", "no-trans", "-F", "experimental", "-F", "unstable", "-F", "deprecated", "--test"]);
     if retcode1 == 0 and retcode2: return True
     else: return False
 
