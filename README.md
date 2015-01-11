@@ -70,6 +70,7 @@ This test suite is a bunch of python scripts for wrangling Rust code from variou
 * Support aux-build tests
 * Support should_fail doc tests
 * Add support for Makefile tests
+* FFI tests, like rust_test_helpers
 * Sources
   * compile-fail, run-fail, run-make tests
   * In-tree std crate docs
