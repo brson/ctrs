@@ -23,7 +23,10 @@ def translate_test_case(out_file_name, markdown_tags, lines):
         'gram', 'ebnf', 'sh', 'precedence',
         'field', 'tuple', 'literals',
         'linked-failure', 'c', 'md', 'keyword',
-        'cpp', 'notrust', 'bash', 'ruby'
+        'cpp', 'notrust', 'bash', 'ruby',
+        'toml', 'shell', 'txt', 'should-fail',
+        'js', 'javascript', 'html', 'make',
+        'json', 'py', 'should_fail'
     ]
 
     # TODO: Do stuff with these

@@ -17,6 +17,12 @@ import shutil
 
 def slurp(srcdir, destdir):
 
+    if not destdir.endswith("/"):
+        destdir += "/"
+
+    if not os.path.isdir(destdir):
+        os.mkdir(destdir)
+
     for dir_name, subdir_list, file_list in os.walk(srcdir):
         for src_file in file_list:
             if not src_file.endswith("rs"):

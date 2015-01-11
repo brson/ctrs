@@ -13,7 +13,10 @@ import os
 import sys
 from undoc import undoc
 
-def slurp_doc(srcdir, destdir):
+def undoc_dir(srcdir, destdir):
+
+    if not os.path.isdir(destdir):
+        os.mkdir(destdir)
 
     junkdirs, basename = os.path.split(srcdir)
     if not basename:
@@ -39,10 +42,10 @@ def slurp_doc(srcdir, destdir):
 if __name__ == '__main__':
 
     if len(sys.argv) < 3:
-        print "usage: slurp_doc.py srcdir destdir"
+        print "usage: undoc_dir.py srcdir destdir"
         sys.exit(1)
 
     srcdir = sys.argv[1]
     destdir = sys.argv[2]
 
-    slurp_doc(srcdir, destdir)
+    undoc_dir(srcdir, destdir)
