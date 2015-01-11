@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/brson/ctrs.svg?branch=master)](https://travis-ci.org/brson/ctrs)
+
 # Conformance Tests for Rust
 
 This is a test suite for validating that a compiler implements the Rust programming language.
