@@ -14,8 +14,10 @@ Set the `RUSTC` environment variable if you must.
 Criteria will expand over time.
 Currently:
 
-* Must pass 'rustc -F unstable -F deprecated -F unstable_features'
+* Must pass 'rustc -F deprecated -F unstable_features'
+* Must pass 'rustc -F deprecated -F unstable_features --test'
 * No 'extern crate' (i.e. only std)
+* No FFI
 
 Run `./stab.py` on a Rust file to see if it is a candidate.
 
@@ -30,7 +32,7 @@ for test 'groups'. Test groups are drawn from many sources.
 Current focus is pulling tests out of the reference implementation that
 meet the criteria.
 
-- 1.0.0-rc
+- 1.1
   - doc - Extracts from the RI 'doc' directory
   - doc-collections - Extracts from the RI collections API docs
   - doc-core - Extracts from the RI core library API docs
@@ -48,7 +50,7 @@ flags to work.
 
 ## Licensing
 
-Any OSI-approved license accepted. Rust license prefered. Non-free
+Any OSI-approved license accepted. Non-free
 licenses also welcome, but in another repo.
 
 ## Scripts

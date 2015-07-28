@@ -68,6 +68,8 @@ def passes_smell_test(filename):
 
                 # 'extern crate' might bring in experimental API's
                 if "extern crate" in line: return False
+                # Just don't want to deal with FFI yet
+                if "extern fn" in line: return False
                 # No ignored test cases
                 if "// ignore" in line: return False
                 # No test cases requiring aux
@@ -82,14 +84,16 @@ def passes_smell_test(filename):
     return True
 
 def uses_stable_apis(filename):
-    retcode1 = call([rustc, filename, "-Z", "no-trans", "-F", "unstable", "-F", "deprecated", "-F", "unstable_features"]);
-    retcode2 = call([rustc, filename, "-Z", "no-trans", "-F", "unstable", "-F", "deprecated", "-F", "unstable_features","--test"]);
-    if retcode1 == 0 and retcode2: return True
+    retcode1 = call([rustc, filename, "-Z", "no-trans", "-F", "deprecated", "-F", "unstable_features"]);
+    retcode2 = call([rustc, filename, "-Z", "no-trans", "-F", "deprecated", "-F", "unstable_features", "--test"]);
+    if retcode1 == 0 and retcode2 == 0: return True
     else: return False
 
 def is_stable(filename):
-    if not passes_smell_test(filename): return False
-    if not uses_stable_apis(filename): return False
+    if not passes_smell_test(filename):
+        return False
+    if not uses_stable_apis(filename):
+        return False
     return True
 
 

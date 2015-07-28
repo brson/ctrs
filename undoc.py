@@ -26,11 +26,11 @@ def translate_test_case(out_file_name, markdown_tags, lines):
         'cpp', 'notrust', 'bash', 'ruby',
         'toml', 'shell', 'txt', 'should-fail',
         'js', 'javascript', 'html', 'make',
-        'json', 'py', 'should_fail'
+        'json', 'py'
     ]
 
     # TODO: Do stuff with these
-    usefull_tags = [ 'no_run', 'test_harness' ]
+    usefull_tags = [ 'no_run', 'test_harness', 'should_panic' ]
 
     # Configure translation from tags
     for tag in markdown_tags:
