@@ -70,7 +70,7 @@ def translate_test_case(out_file_name, markdown_tags, lines):
             if not has_main:
                 # Indent to make pretty
                 f.write("    ")
-            f.write(line + "\n")
+            f.write(line)
 
         if not has_main:
             f.write("}\n")
