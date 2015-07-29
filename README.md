@@ -79,7 +79,10 @@ This test suite is a bunch of python scripts for wrangling Rust code from variou
   * In-tree std crate docs
   * Popular blog posts
   * rustforrubyists.com
-  * Other 'example' sources
+  * rosetta https://github.com/Hoverbear/rust-rosetta
+  * euler-rust https://github.com/gifnksm/ProjectEulerRust
+  * guidelines
+  * http://blog.burntsushi.net/rust-error-handling/
   * Dependency-free libs e.g. math, quickcheck
   * coretest
   * automatic extraction of #[test] cases
