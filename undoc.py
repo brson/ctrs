@@ -94,8 +94,6 @@ def undoc(filename, outdir, test_name):
         lines = []
         for line in f:
 
-            if line.find("```") >=0 or line.find("~~~") >= 0:
-                line = line.strip()
             if line.strip().startswith("/// ") or line.strip().startswith("//! "):
                 line = line.strip()[4 : len(line)]
             if line.strip().startswith("///") or line.strip().startswith("//!"):

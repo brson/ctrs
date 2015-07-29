@@ -1,6 +1,0 @@
-fn main() {
-    match foo {
-        box X(...) => ...
-        box Y(...) => ...
-    }
-}
