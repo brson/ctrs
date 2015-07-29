@@ -58,6 +58,7 @@ licenses also welcome, but in another repo.
 This test suite is a bunch of python scripts for wrangling Rust code from various places and into a form that is runnable.
 
 * `dupes.py` - Lists files in the repo with identical hashes.
+* `delete_dupes.py` - Deletes duplicates from git.
 * `run.py` - The test suite runner. Just needs a `rustc` command available or the `RUSTC` environment variable to be set.
 * `slurp.py` - Copies all Rust files that pass `stab.py` from one dir to another.
 * `slurp_docs.py` - Extracts stable docs from one dir to another.
