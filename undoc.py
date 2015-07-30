@@ -65,12 +65,13 @@ def translate_test_case(out_file_name, markdown_tags, lines):
             f.write("fn main() {\n")
 
         for line in lines:
+            line = line.strip()
             if line.startswith("# "):
                 line = line[2:len(line)]
             if not has_main:
                 # Indent to make pretty
                 f.write("    ")
-            f.write(line)
+            f.write(line + "\n")
 
         if not has_main:
             f.write("}\n")
