@@ -65,7 +65,7 @@ def translate_test_case(out_file_name, markdown_tags, lines):
             f.write("fn main() {\n")
 
         for line in lines:
-            line = line.strip()
+            line = line.rstrip()
             if line.startswith("# "):
                 line = line[2:len(line)]
             if not has_main:
