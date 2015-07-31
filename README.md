@@ -30,9 +30,18 @@ for test 'groups'. Test groups are drawn from many sources.
 ## Current coverage
 
 Current focus is pulling tests out of the reference implementation that
-meet the criteria.
+meet the criteria, as well as sourcing single-file examples from
+other places.
 
-- 1.1
+- 1.2.0
+  - doc - Extracts from the RI 'doc' directory
+  - doc-collections - Extracts from the RI collections API docs
+  - doc-core - Extracts from the RI core library API docs
+  - doc-std - Extracts from the RI std library API docs
+  - pretty - Tests from the RI test suite's 'pretty' directory
+  - run-pass - Tests from the RI test suite's 'run-pass' directory
+  - rust-by-example - Extracts from www.rustbyexample.com
+- 1.1.0
   - doc - Extracts from the RI 'doc' directory
   - doc-collections - Extracts from the RI collections API docs
   - doc-core - Extracts from the RI core library API docs
