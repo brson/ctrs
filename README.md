@@ -2,12 +2,12 @@
 
 # Conformance Tests for Rust
 
-This is a test suite for validating that a compiler implements the Rust programming language.
-The basic strategy will be to establish a criteria for identifying 'stable' Rust code,
-and collecting as much of it as possible here.
+This is a test suite for The [Rust] Programming Language.
 
 Execute with `./run.py` to test your Rust compiler.
 Set the `RUSTC` environment variable if you must.
+
+[Rust]: http://www.rust-lang.org
 
 ## Criteria for inclusion
 
@@ -17,15 +17,16 @@ Currently:
 * Must pass 'rustc -F deprecated -F unstable_features'
 * Must pass 'rustc -F deprecated -F unstable_features --test'
 * No 'extern crate' (i.e. only std)
-* No FFI
+* No 'extern fn' (i.e. no FFI)
 
 Run `./stab.py` on a Rust file to see if it is a candidate.
 
 ## Organization
 
-All tests are under the `test` directory. Immediately under `test`
-are directories for Rust versions. Under each version are directories
-for test 'groups'. Test groups are drawn from many sources.
+All tests are under the `test` directory. Immediately under `test` are
+directories for Rust language/compiler versions. Under each version
+are directories for test 'groups'. Test groups are drawn from many
+sources, and are licensed individually.
 
 ## Current coverage
 
@@ -64,11 +65,13 @@ licenses also welcome, but in another repo.
 
 ## Scripts
 
-This test suite is a bunch of python scripts for wrangling Rust code from various places and into a form that is runnable.
+This test suite is a bunch of python scripts for wrangling Rust code
+from various places and into a form that is runnable.
 
 * `dupes.py` - Lists files in the repo with identical hashes.
 * `delete_dupes.py` - Deletes duplicates from git.
-* `run.py` - The test suite runner. Just needs a `rustc` command available or the `RUSTC` environment variable to be set.
+* `run.py` - The test suite runner. Just needs a `rustc` command
+  available or the `RUSTC` environment variable to be set.
 * `slurp.py` - Copies all Rust files that pass `stab.py` from one dir to another.
 * `slurp_docs.py` - Extracts stable docs from one dir to another.
 * `undoc_dir.py` - Recursively extracts doc tests from all .rs/.md files to a dir.
