@@ -69,11 +69,11 @@ This test suite is a bunch of python scripts for wrangling Rust code from variou
 ## Future directions
 
 * Improve accuracy of staby.py
-* Improve upstream API stability
 * Add support for reference compile-fail tests
 * Support aux-build tests
-* Support should_fail doc tests
-* Add support for Makefile tests
+* Support should-panic doc tests
+* Support run-fail tests
+* Add support for Makefile tests?
 * FFI tests, like rust_test_helpers
 * Sources
   * compile-fail, run-fail, run-make tests
