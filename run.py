@@ -118,11 +118,6 @@ def run_test(version, group, test_name):
 
 
 def run_test_group(version, group):
-    for filename in os.listdir(group_dir):
-        if filename == "lib.rs" or filename == "bin.rs":
-            passed = run_test(version, group, filename)
-            return (passed, 1)
-
     return run_basic_test_group(version, group)
 
 
@@ -154,8 +149,28 @@ def run_basic_test_group(version, group):
     print "\r" + version + "/" + group + ": " + str(passes) + "/" + str(total - passes) + "/" + str(len(test_names)) + passfail
     return (passes, total)
 
-passes = 0
 total = 0
+
+for version in os.listdir(test_dir):
+    version_dir = test_dir + "/" + version
+    if not os.path.isdir(version_dir): continue
+
+    groups = None
+    if test_groups: groups = test_groups.split(" ")
+
+    for group in os.listdir(version_dir):
+        group_dir = version_dir + "/" + group
+
+        if groups and not group in groups: continue
+
+        for test_name in os.listdir(group_dir):
+            total += 1
+
+print "Running " + str(total) + " tests"
+print
+
+total = 0
+passes = 0
 
 # Each directory under the test directory contains tests for a specific
 # version of the language

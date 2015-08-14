@@ -66,8 +66,12 @@ flags to work.
 
 ## Licensing
 
-Any OSI-approved license accepted. Non-free
-licenses also welcome, but in another repo.
+Any OSI-approved license accepted. Non-free licenses also welcome, but
+in another repo.
+
+The way this is tracked currently is in a LICENSE file in each
+directory of code that didn't originate from The Rust Project itself,
+along with an ORIGIN file indicating where it came from.
 
 ## Scripts
 
@@ -98,11 +102,8 @@ from various places and into a form that is runnable.
   * In-tree std crate docs
   * Popular blog posts
   * rustforrubyists.com
-  * rosetta https://github.com/Hoverbear/rust-rosetta
-  * rustonomicon
   * euler-rust https://github.com/gifnksm/ProjectEulerRust
   * https://github.com/geraldstanje/rust_snippets
-  * too-many-lists http://cglab.ca/%7Eabeinges/blah/too-many-lists/book/
   * guidelines
   * http://blog.burntsushi.net/rust-error-handling/
   * Dependency-free libs e.g. math, quickcheck
