@@ -93,7 +93,10 @@ from various places and into a form that is runnable.
   * Popular blog posts
   * rustforrubyists.com
   * rosetta https://github.com/Hoverbear/rust-rosetta
+  * rustonomicon
   * euler-rust https://github.com/gifnksm/ProjectEulerRust
+  * https://github.com/geraldstanje/rust_snippets
+  * too-many-lists http://cglab.ca/%7Eabeinges/blah/too-many-lists/book/
   * guidelines
   * http://blog.burntsushi.net/rust-error-handling/
   * Dependency-free libs e.g. math, quickcheck
