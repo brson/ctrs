@@ -34,7 +34,6 @@ Currently:
 * Must pass 'rustc -F deprecated -F unstable_features'
 * Must pass 'rustc -F deprecated -F unstable_features --test'
 * No 'extern crate' (i.e. only std)
-* No 'extern fn' (i.e. no FFI)
 * Single-file test cases only
 
 Run `./stab.py` on a Rust file to see if it is a candidate.

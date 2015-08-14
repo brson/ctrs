@@ -68,8 +68,6 @@ def passes_smell_test(filename):
 
                 # 'extern crate' might bring in experimental API's
                 if "extern crate" in line: return False
-                # Just don't want to deal with FFI yet
-                if "extern fn" in line: return False
                 # No ignored test cases
                 if "// ignore" in line: return False
                 # No test cases requiring aux
