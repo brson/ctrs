@@ -45,6 +45,10 @@ directories for Rust language/compiler versions. Under each version
 are directories for test 'groups'. Test groups are drawn from many
 sources, and are licensed individually.
 
+Note that even tests categorized under a later language revision may
+work under previous revisions. When tests are added for a new language
+version they are not first checked against previous versions.
+
 ## Current coverage
 
 Current focus is pulling tests out of the reference implementation that
@@ -58,6 +62,7 @@ other places.
   - doc-std - Extracts from the RI std library API docs
   - too-many-lists - Extracts from *[Learn Rust by writing Entirely Too Many Linked Lists][lists]*
   - run-pass - Tests from the RI test suite's 'run-pass' directory
+  - rust-by-example - Extracts from [www.rustbyexample.com]
 - 1.2.0
   - doc - Extracts from the RI 'doc' directory
   - doc-collections - Extracts from the RI collections API docs
