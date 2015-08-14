@@ -5,7 +5,7 @@ fn main() {
     }
     
     struct B {
-        a: i32,
+        x: i32,
         b: u64,
     }
 }

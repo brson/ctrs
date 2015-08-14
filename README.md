@@ -35,7 +35,7 @@ meet the criteria, as well as sourcing single-file examples from
 other places.
 
 - 1.3.0
-  - nomicon - Extracts from the Rustonomicon
+  - doc - Extracts from the RI 'doc' directory
   - too-many-lists - Extracts from *[Learn Rust by writing Entirely Too Many linked lists][lists]*
 - 1.2.0
   - doc - Extracts from the RI 'doc' directory
