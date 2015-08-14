@@ -1,8 +1,25 @@
 [![Build Status](https://travis-ci.org/brson/ctrs.svg?branch=master)](https://travis-ci.org/brson/ctrs)
 
-# Conformance Tests for Rust
+# Conformance Tests for Rust (CTRS)
 
-This is a test suite for The [Rust] Programming Language.
+This is an implementation-independent test suite for The [Rust]
+Programming Language. It is intended as a regression test for
+the reference implementation, as well as a tool for testing
+conformance of alternate implementations.
+
+It differs from the RI test suite in several ways:
+
+* It only covers stable features.
+* It has a simple implementation-independent test runner.
+* It draws test cases from a wide range of sources.
+* It categorizes test cases by language revision, so that multiple
+  levels of conformance may be established.
+
+CTRS is not a curated test of the specification - this probably isn't
+code you want to read for fun. Rather, it is simply a massive corpus
+of valid Rust code that is known work against the reference
+compiler. The test suite will evolve over time as bugs are shaken
+out of the RI.
 
 Execute with `./run.py` to test your Rust compiler.
 Set the `RUSTC` environment variable if you must.
@@ -18,6 +35,7 @@ Currently:
 * Must pass 'rustc -F deprecated -F unstable_features --test'
 * No 'extern crate' (i.e. only std)
 * No 'extern fn' (i.e. no FFI)
+* Single-file test cases only
 
 Run `./stab.py` on a Rust file to see if it is a candidate.
 
@@ -40,6 +58,7 @@ other places.
   - doc-core - Extracts from the RI core library API docs
   - doc-std - Extracts from the RI std library API docs
   - too-many-lists - Extracts from *[Learn Rust by writing Entirely Too Many Linked Lists][lists]*
+  - run-pass - Tests from the RI test suite's 'run-pass' directory
 - 1.2.0
   - doc - Extracts from the RI 'doc' directory
   - doc-collections - Extracts from the RI collections API docs
