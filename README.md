@@ -36,7 +36,10 @@ other places.
 
 - 1.3.0
   - doc - Extracts from the RI 'doc' directory
-  - too-many-lists - Extracts from *[Learn Rust by writing Entirely Too Many linked lists][lists]*
+  - doc-collections - Extracts from the RI collections API docs
+  - doc-core - Extracts from the RI core library API docs
+  - doc-std - Extracts from the RI std library API docs
+  - too-many-lists - Extracts from *[Learn Rust by writing Entirely Too Many Linked Lists][lists]*
 - 1.2.0
   - doc - Extracts from the RI 'doc' directory
   - doc-collections - Extracts from the RI collections API docs
