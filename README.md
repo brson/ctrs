@@ -2,7 +2,7 @@
 
 # Conformance Tests for Rust (CTRS)
 
-This is an implementation-independent test suite for The [Rust]
+This is an implementation-independent test suite for The Rust
 Programming Language. It is intended as a regression test for
 the reference implementation, as well as a tool for testing
 conformance of alternate implementations.
@@ -23,8 +23,6 @@ out of the RI.
 
 Execute with `./run.py` to test your Rust compiler.
 Set the `RUSTC` environment variable if you must.
-
-[Rust]: http://www.rust-lang.org
 
 ## Criteria for inclusion
 
