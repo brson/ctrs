@@ -17,7 +17,7 @@ It differs from the RI test suite in several ways:
 
 CTRS is not a curated test of the specification - this probably isn't
 code you want to read for fun. Rather, it is simply a massive corpus
-of valid Rust code that is known work against the reference
+of valid Rust code that is known to work against the reference
 compiler. The test suite will evolve over time as bugs are shaken
 out of the RI.
 
