@@ -127,6 +127,7 @@ from various places and into a form that is runnable.
   * Popular blog posts
   * rustforrubyists.com
   * euler-rust https://github.com/gifnksm/ProjectEulerRust
+  * http://www.programming-idioms.org/about#about-block-language-coverage
   * https://github.com/geraldstanje/rust_snippets
   * guidelines
   * http://blog.burntsushi.net/rust-error-handling/
