@@ -90,12 +90,14 @@ flags to work.
 
 ## Licensing
 
-Any OSI-approved license accepted. Non-free licenses also welcome, but
-in another repo.
+For test cases, any OSI-approved license accepted. Non-free licenses
+also welcome, but in another repo.
 
 The way this is tracked currently is in a LICENSE file in each
 directory of code that didn't originate from The Rust Project itself,
 along with an ORIGIN file indicating where it came from.
+
+Other code in CTRS is MIT/Apache-2.0.
 
 ## Scripts
 
