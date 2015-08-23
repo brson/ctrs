@@ -137,4 +137,5 @@ from various places and into a form that is runnable.
   * coretest
   * automatic extraction of #[test] cases
   * tool to extract build plans from cargo graphs
-
+  * https://www.ralfj.de/projects/rust-101/main.html
+  * error index examples!
