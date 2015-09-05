@@ -12,3 +12,6 @@ path = "lib.rs"
 
 [dependencies]
 semver = "0.1.20"
+env_logger = "0.3.1"
+log = "0.3.1"
+rustc-serialize = "0.3.16"
