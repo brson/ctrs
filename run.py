@@ -120,12 +120,18 @@ def run_test(version, group, test_name):
 def run_test_group(version, group):
     return run_basic_test_group(version, group)
 
+def is_broken(path):
+    return file_contains(path, "// ctrs-broken")
+
+def file_contains(path, string)
 
 def run_basic_test_group(version, group):
     group_dir = test_dir + "/" + version + "/" + group
 
     test_names = []
     for test_name in os.listdir(group_dir):
+        if is_broken(group_dir + "/" test_name):
+            continue
         test_names += [test_name]
 
     passes = 0
