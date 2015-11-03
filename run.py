@@ -21,7 +21,12 @@ test_dir = os.getenv('CTRS_TEST_DIR', 'test')
 # The directory to use for temporary files, default ./tmp-ctrs
 tmp_dir = os.getenv('CTRS_TMP_DIR', 'tmp-ctrs')
 # Space-separated list of test groups to run
-test_groups = os.getenv('CTRS_GROUPS', None)
+test_groups_filter = os.getenv('CTRS_GROUPS', None)
+# Space-separated list of test names
+test_names_filter = os.getenv('CTRS_NAMES', None)
+
+if test_groups_filter: test_groups_filter = test_groups_filter.split(" ")
+if test_names_filter: test_names_filter = test_names_filter.split(" ")
 
 verbose = False
 
@@ -121,18 +126,29 @@ def run_test_group(version, group):
     return run_basic_test_group(version, group)
 
 def is_broken(path):
-    return file_contains(path, "// ctrs-broken")
-
-def file_contains(path, string)
+    with open(path, "r") as f:
+        lines = f.readlines()
+        for line in lines:
+            if "// ctrs-broken" in line:
+                return True
+    return False
 
 def run_basic_test_group(version, group):
     group_dir = test_dir + "/" + version + "/" + group
 
     test_names = []
     for test_name in os.listdir(group_dir):
-        if is_broken(group_dir + "/" test_name):
+        if is_broken(group_dir + "/" + test_name):
+            print "skipping broken test: " + group + " / " + test_name
             continue
-        test_names += [test_name]
+        keep = True
+        if test_names_filter:
+            keep = False
+            for filter in test_names_filter:
+                if filter in test_name:
+                    keep = True
+        if keep:
+            test_names += [test_name]
 
     passes = 0
     total = 0
@@ -161,16 +177,22 @@ for version in os.listdir(test_dir):
     version_dir = test_dir + "/" + version
     if not os.path.isdir(version_dir): continue
 
-    groups = None
-    if test_groups: groups = test_groups.split(" ")
-
     for group in os.listdir(version_dir):
         group_dir = version_dir + "/" + group
 
-        if groups and not group in groups: continue
+        if test_groups_filter and not group in test_groups_filter: continue
 
         for test_name in os.listdir(group_dir):
-            total += 1
+            if is_broken(group_dir + "/" + test_name):
+                print "skipping broken test: " + group + " / " + test_name
+                continue
+            keep = True
+            if test_names_filter:
+                for filter in test_names_filter:
+                    if filter in test_name:
+                        keep = True
+            if keep:
+                total += 1
 
 print "Running " + str(total) + " tests"
 print
@@ -180,22 +202,33 @@ passes = 0
 
 # Each directory under the test directory contains tests for a specific
 # version of the language
+versions = []
 for version in os.listdir(test_dir):
     version_dir = test_dir + "/" + version
     if not os.path.isdir(version_dir): continue
+    versions += [version]
 
-    groups = None
-    if test_groups: groups = test_groups.split(" ")
+versions = sorted(versions)
 
+for version in versions:
+
+    final_groups = []
+
+    version_dir = test_dir + "/" + version
     for group in os.listdir(version_dir):
         group_dir = version_dir + "/" + group
 
-        if groups and not group in groups: continue
+        if test_groups_filter and not group in test_groups_filter: continue
+        final_groups += [group]
 
+    final_groups = sorted(final_groups)
+
+    for group in final_groups:
         (new_passes, new_total) = run_test_group(version, group)
-
         passes += new_passes
         total += new_total
+
+
 
 print
 print "# Summary"
