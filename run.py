@@ -20,11 +20,14 @@ rustc = os.getenv('RUSTC', 'rustc')
 test_dir = os.getenv('CTRS_TEST_DIR', 'test')
 # The directory to use for temporary files, default ./tmp-ctrs
 tmp_dir = os.getenv('CTRS_TMP_DIR', 'tmp-ctrs')
+# Space-separated list of test versions
+test_versions_filter = os.getenv('CTRS_VERSIONS', None)
 # Space-separated list of test groups to run
 test_groups_filter = os.getenv('CTRS_GROUPS', None)
 # Space-separated list of test names
 test_names_filter = os.getenv('CTRS_NAMES', None)
 
+if test_versions_filter: test_versions_filter = test_versions_filter.split(" ")
 if test_groups_filter: test_groups_filter = test_groups_filter.split(" ")
 if test_names_filter: test_names_filter = test_names_filter.split(" ")
 
@@ -176,6 +179,7 @@ total = 0
 for version in os.listdir(test_dir):
     version_dir = test_dir + "/" + version
     if not os.path.isdir(version_dir): continue
+    if test_versions_filter and not version in test_versions_filter: continue
 
     for group in os.listdir(version_dir):
         group_dir = version_dir + "/" + group
@@ -206,6 +210,7 @@ versions = []
 for version in os.listdir(test_dir):
     version_dir = test_dir + "/" + version
     if not os.path.isdir(version_dir): continue
+    if test_versions_filter and not version in test_versions_filter: continue
     versions += [version]
 
 versions = sorted(versions)
