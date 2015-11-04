@@ -53,6 +53,12 @@ Current focus is pulling tests out of the reference implementation that
 meet the criteria, as well as sourcing single-file examples from
 other places.
 
+- 1.4.0
+  - doc - Extracts from the RI 'doc' directory
+  - doc-collections - Extracts from the RI collections API docs
+  - doc-core - Extracts from the RI core library API docs
+  - doc-std - Extracts from the RI std library API docs
+  - run-pass - Tests from the RI test suite's 'run-pass' directory
 - 1.3.0
   - doc - Extracts from the RI 'doc' directory
   - doc-collections - Extracts from the RI collections API docs
